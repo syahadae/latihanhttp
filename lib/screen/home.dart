@@ -11,6 +11,9 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  //bisa dilihat disini  deklarasi users, users disini dinamic ya
+  // darimana tau dinamic?
+  // bisa bukak aja datanya, bentuknya adalah list dynamic
   List<dynamic> users = [];
   @override
   Widget build(BuildContext context) {
@@ -25,10 +28,30 @@ class _HomeScreenState extends State<HomeScreen> {
       body: ListView.builder(
           itemCount: users.length,
           itemBuilder: (context, index) {
+            // liat dua buah deklrasi dibawah ini, ini sebnarnya
+            // dibuat supaya gampang pas benran manggilnya.
+            // contohnya user ini sudah termasuk user index
+            // dan email ini bisa ditemukan di list user di dalam result
+            // dan di dalam usr ini ada email.
+
             final user = users[index];
             final email = user['email'];
+            final imgUrl = user['picture']['thumbnail'];
+
+            final firstName = user['name']['first'];
+
+            final lastName = user['name']['last'];
+            final fullName = firstName + ' ' + lastName;
             return ListTile(
-              title: Text(email),
+              leading: ClipRRect(
+                borderRadius: BorderRadius.circular(100),
+                child: CircleAvatar(
+                  child: Image.network(imgUrl),
+                  // child: Text('${index + 1}'),
+                ),
+              ),
+              title: Text(fullName),
+              subtitle: Text(email),
             );
           }),
       floatingActionButton: FloatingActionButton(
