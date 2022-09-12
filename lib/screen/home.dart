@@ -38,8 +38,8 @@ class _HomeScreenState extends State<HomeScreen> {
           itemBuilder: (context, index) {
             final user = users[index];
             return ListTile(
-              title: Text(user.fullName),
-              subtitle: Text(user.phone),
+              title: Text(user.location.country),
+              subtitle: Text(user.location.coordinates.latitude),
             );
           }),
     );

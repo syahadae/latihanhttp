@@ -5,4 +5,11 @@ class UserDob {
     required this.date,
     required this.age,
   });
+  factory UserDob.fromMap(Map<String, dynamic> json) {
+    return UserDob(
+      // date: e['dob']['date'],
+      date: DateTime.parse(json['date']),
+      age: json['age'],
+    );
+  }
 }
